@@ -3,7 +3,7 @@ import graphql
 
 def format_graphql_query(query: str) -> str:
     try:
-        # Парсим запрос
+        # Парсим запрос с использованием библиотеки graphql-core-next
         parsed_query = graphql.parse(query)
         # Форматируем запрос и возвращаем отформатированный текст
         formatted_query = graphql.print_ast(parsed_query)
@@ -13,18 +13,8 @@ def format_graphql_query(query: str) -> str:
         raise Exception(f'Ошибка форматирования GraphQL-запроса: {str(e)}')
 
 
-user_query = """
-query {
-             user(id: 1) {
-  
-    name
-    
-    
-    
-    email
-  }
-}
-"""
+# Ввод GraphQL-запроса из консоли
+user_query = input("Введите ваш GraphQL-запрос:\n")
 
 formatted_query = format_graphql_query(user_query)
-print(formatted_query)
+print(f'\nОтформатированный запрос:\n{formatted_query}')
